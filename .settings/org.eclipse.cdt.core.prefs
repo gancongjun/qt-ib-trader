@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.debug.14080336/PATH/delimiter=;
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.debug.14080336/PATH/operation=replace
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.debug.14080336/PATH/value=C\:\\Python32\\Lib\\site-packages\\PyQt4;c\:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C\:\\Windows\\system32;C\:\\Windows;C\:\\Windows\\System32\\Wbem;C\:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C\:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;c\:\\Program Files (x86)\\Microsoft SQL Server\\90\\Tools\\binn\\;C\:\\Program Files (x86)\\Microsoft ASP.NET\\ASP.NET Web Pages\\v1.0\\;C\:\\Program Files (x86)\\Windows Kits\\8.0\\Windows Performance Toolkit\\;C\:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C\:\\Program Files (x86)\\CMake 2.8\\bin;C\:\\Python32;C\:\\QtSDK\\Madde\\bin;C\:\\MinGW\\bin
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.debug.14080336/append=true
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.debug.14080336/appendContributed=true
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.release.1412337210/PATH/delimiter=;
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.release.1412337210/PATH/operation=replace
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.release.1412337210/PATH/value=C\:\\Python32\\Lib\\site-packages\\PyQt4;c\:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C\:\\Windows\\system32;C\:\\Windows;C\:\\Windows\\System32\\Wbem;C\:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C\:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;c\:\\Program Files (x86)\\Microsoft SQL Server\\90\\Tools\\binn\\;C\:\\Program Files (x86)\\Microsoft ASP.NET\\ASP.NET Web Pages\\v1.0\\;C\:\\Program Files (x86)\\Windows Kits\\8.0\\Windows Performance Toolkit\\;C\:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C\:\\Program Files (x86)\\CMake 2.8\\bin;C\:\\Python32;C\:\\QtSDK\\Madde\\bin;C\:\\MinGW\\bin
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.release.1412337210/append=true
+environment/project/cdt.managedbuild.config.gnu.cygwin.exe.release.1412337210/appendContributed=true
