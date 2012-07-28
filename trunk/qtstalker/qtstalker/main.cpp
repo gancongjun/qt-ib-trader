@@ -8,6 +8,7 @@
 #include <cstdlib>
 
 using namespace std;
+#include <qlayout>
 
 /*
  * 
