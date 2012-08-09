@@ -8,7 +8,7 @@
 // Use the * operator in front of the enumeration if the string is needed.
 // I.e calling 
 //   reqRealTimeBars( TickerId id, const Contract &contract, int barSize,
-//	   const IBString &whatToShow, bool useRTH)
+//	   const std::string &whatToShow, bool useRTH)
 // can be done as follows
 //  reqRealTimeBars( id, contract, BarSizeSetting::_5_secs
 //     , *WhatToShow::TRADES, UseRTH::OnlyRegularTradingData );
@@ -115,11 +115,11 @@ namespace TwsApi
 		GenericTickString             ( void ) {}
 		GenericTickString             ( GenericTicks::ENUMS gt ) { char s[32]; sprintf( s, "%d", gt ); m_gt  = s; }
 		GenericTickString& operator = ( GenericTicks::ENUMS gt ) { char s[32]; sprintf( s, "%d", gt ); m_gt  = s; return *this; }
-		GenericTickString& operator + ( GenericTicks::ENUMS gt ) { char s[32]; sprintf( s, "%d", gt ); m_gt += IBString(m_gt.length() ?"," : "") + s; return *this; }
-		GenericTickString& operator +=( GenericTicks::ENUMS gt ) { char s[32]; sprintf( s, "%d", gt ); m_gt += IBString(m_gt.length() ?"," : "") + s; return *this; }
-		operator const IBString& ( void ) { return m_gt; }
-		operator const char*     ( void ) { return m_gt; }
-		private: IBString m_gt;
+		GenericTickString& operator + ( GenericTicks::ENUMS gt ) { char s[32]; sprintf( s, "%d", gt ); m_gt += std::string(m_gt.length() ?"," : "") + s; return *this; }
+		GenericTickString& operator +=( GenericTicks::ENUMS gt ) { char s[32]; sprintf( s, "%d", gt ); m_gt += std::string(m_gt.length() ?"," : "") + s; return *this; }
+		operator const std::string& ( void ) { return m_gt; }
+		//operator const char*     ( void ) { return m_gt; }
+		private: std::string m_gt;
 	};
 	#endif
 
@@ -253,7 +253,7 @@ namespace TwsApi
 	// EWrapper method support
 	//------------------------------------------------------------------------
 
-	//	virtual void orderStatus( OrderId orderId, const IBString& status, int filled, int remaining, double avgFillPrice, int permId, int parentId, double lastFillPrice, int clientId ) {} 
+	//	virtual void orderStatus( OrderId orderId, const std::string& status, int filled, int remaining, double avgFillPrice, int permId, int parentId, double lastFillPrice, int clientId ) {} 
 	// Although it is a string, it is defined mixedcase in the documentation?!
 	ENUMValues( OrderStatus )
 		ENUM_N( Undefined      )
@@ -266,7 +266,7 @@ namespace TwsApi
 	ENUMFunctions( OrderStatus )
 
 
-	//	virtual void updateMktDepth[L2]( TickerId id, int position, IBString marketMaker, int operation, int side, double price, int size ) {}
+	//	virtual void updateMktDepth[L2]( TickerId id, int position, std::string marketMaker, int operation, int side, double price, int size ) {}
 	ENUMValues( MktDepthOperation )
 		ENUM_N( Insert )
 		ENUM_N( Update )
@@ -279,7 +279,7 @@ namespace TwsApi
 	ENUMFunctions( MktDeptSide )
 
 
-	//	virtual void updateNewsBulletin( int msgId, int msgType, const IBString& newsMessage, const IBString& originExch ) {}
+	//	virtual void updateNewsBulletin( int msgId, int msgType, const std::string& newsMessage, const std::string& originExch ) {}
 	ENUMValues( NewsBulletinMsgType )
 		ENUM_V( ReqularNewsBulletin, 1              )	// starts with value = 1
 		ENUM_N( ExchangeNoLongerAvailableForTrading )
@@ -293,9 +293,9 @@ namespace TwsApi
 
 	#ifndef ENUMImplementation
 	extern
-	IBString DateTime( int YYYYMMDD, int hh = 0, int mm = 0, int ss = 0, char Sep1 = ' ', char Sep2 = ':' )
+	std::string DateTime( int YYYYMMDD, int hh = 0, int mm = 0, int ss = 0, char Sep1 = ' ', char Sep2 = ':' )
 	#else
-	IBString DateTime( int YYYYMMDD, int hh    , int mm    , int ss    , char Sep1      , char Sep2       )
+	std::string DateTime( int YYYYMMDD, int hh    , int mm    , int ss    , char Sep1      , char Sep2       )
 	{   
 		char X[128]; sprintf( X, "%8d%c%02d%c%02d%c%02d", YYYYMMDD, Sep1, hh, Sep2, mm, Sep2, ss ); return X;
 	}
@@ -315,12 +315,12 @@ namespace TwsApi
 
 
 	//	virtual void reqHistoricalData( TickerId id, const Contract &contract, 
-	//		const IBString &endDateTime, const IBString &durationStr, int barSizeSetting,
-	//		const IBString &whatToShow, int useRTH, int formatDate) = 0;
+	//		const std::string &endDateTime, const std::string &durationStr, int barSizeSetting,
+	//		const std::string &whatToShow, int useRTH, int formatDate) = 0;
 	#ifndef ENUMImplementation
-	IBString EndDateTime( int YYYY, int MM, int DD, int hh = 0, int mm = 0, int ss = 0 )
+	std::string EndDateTime( int YYYY, int MM, int DD, int hh = 0, int mm = 0, int ss = 0 )
 	#else
-	IBString EndDateTime( int YYYY, int MM, int DD, int hh    , int mm    , int ss     )
+	std::string EndDateTime( int YYYY, int MM, int DD, int hh    , int mm    , int ss     )
 	{
 		return DateTime( YYYY*10000 + MM*100 + DD, hh, mm, ss );
 	}
@@ -335,7 +335,7 @@ namespace TwsApi
 		ENUM_S( Years  , "Y" )
 	ENUMFunctions( DurationHorizon )
 
-	IBString DurationStr( int Duration, const char* DH )
+	std::string DurationStr( int Duration, const char* DH )
 	#ifdef ENUMImplementation
 	{
 		char X[128]; sprintf( X, "%d %s", Duration, DH ); return X;
@@ -386,7 +386,7 @@ namespace TwsApi
 
 
 	//	virtual void exerciseOptions( TickerId id, const Contract &contract,
-	//		int exerciseAction, int exerciseQuantity, const IBString &account, int override) = 0;
+	//		int exerciseAction, int exerciseQuantity, const std::string &account, int override) = 0;
 	ENUMValues( ExerciseAction )
 		ENUM_V( Exercise, 1 )	// starts with value = 1
 		ENUM_N( Lapse       )
@@ -414,9 +414,9 @@ namespace TwsApi
 	//------------------------------------------------------------------------
 	#ifndef ENUMImplementation
 	extern
-	IBString ExecutionTime( int YYYY, int MM, int DD, int hh = 0, int mm = 0, int ss = 0 )
+	std::string ExecutionTime( int YYYY, int MM, int DD, int hh = 0, int mm = 0, int ss = 0 )
 	#else
-	IBString ExecutionTime( int YYYY, int MM, int DD, int hh    , int mm    , int ss     )
+	std::string ExecutionTime( int YYYY, int MM, int DD, int hh    , int mm    , int ss     )
 	{
 		return DateTime( YYYY*10000 + MM*100 + DD, hh, mm, ss, '-' );
 	}
@@ -437,7 +437,7 @@ namespace TwsApi
 		ENUM_N( BAG   )
 	ENUMFunctions( SecType )
 
-	extern IBString ContractExpirationDate( int YYYY, int MM )
+	extern std::string ContractExpirationDate( int YYYY, int MM )
 	#ifdef ENUMImplementation
 	{
 		char X[128]; sprintf( X, "%6d", YYYY*100 + MM ); return X;
@@ -525,9 +525,9 @@ namespace TwsApi
 
 	#ifndef ENUMImplementation
 	extern
-	IBString OrderGoodAfterTime( int YYYY, int MM, int DD, int hh = 0, int mm = 0, int ss = 0 )
+	std::string OrderGoodAfterTime( int YYYY, int MM, int DD, int hh = 0, int mm = 0, int ss = 0 )
 	#else
-	IBString OrderGoodAfterTime( int YYYY, int MM, int DD, int hh    , int mm    , int ss     )
+	std::string OrderGoodAfterTime( int YYYY, int MM, int DD, int hh    , int mm    , int ss     )
 	{
 		return DateTime( YYYY*10000 + MM*100 + DD, hh, mm, ss );
 	}
@@ -536,9 +536,9 @@ namespace TwsApi
 
 	#ifndef ENUMImplementation
 	extern
-	IBString OrderGoodTillDate( int YYYY, int MM, int DD, int hh = 0, int mm = 0, int ss = 0 )
+	std::string OrderGoodTillDate( int YYYY, int MM, int DD, int hh = 0, int mm = 0, int ss = 0 )
 	#else
-	IBString OrderGoodTillDate( int YYYY, int MM, int DD, int hh    , int mm    , int ss     )
+	std::string OrderGoodTillDate( int YYYY, int MM, int DD, int hh    , int mm    , int ss     )
 	{
 		return DateTime( YYYY*10000 + MM*100 + DD, hh, mm, ss );
 	}
@@ -623,7 +623,7 @@ namespace TwsApi
 	ENUMFunctions( StockTypeFilter )
 
 	//------------------------------------------------------------------------
-	// virtual void updateAccountValue(const IBString& key, const IBString& val,
+	// virtual void updateAccountValue(const std::string& key, const std::string& val,
 	//------------------------------------------------------------------------
 	ENUMValues( UpdateAccountValueKey )
 		ENUM_N( AccountCode                        )

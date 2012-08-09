@@ -42,14 +42,14 @@ public:
 
 	// override virtual funcs from EClient
 	int serverVersion();
-	IBString TwsConnectionTime();
+	std::string TwsConnectionTime();
 	void reqMktData(TickerId id, const Contract &contract,
-		const IBString &genericTicks, bool snapshot);
+		const std::string &genericTicks, bool snapshot);
 	void cancelMktData(TickerId id);
 	void placeOrder(OrderId id, const Contract &contract, const Order &order);
 	void cancelOrder(OrderId id) ;
 	void reqOpenOrders();
-	void reqAccountUpdates(bool subscribe, const IBString& acctCode);
+	void reqAccountUpdates(bool subscribe, const std::string& acctCode);
 	void reqExecutions(int reqId, const ExecutionFilter& filter);
 	void reqIds(int numIds);
 	bool checkMessages();
@@ -63,23 +63,23 @@ public:
 	void reqAllOpenOrders();
 	void reqManagedAccts();
 	void requestFA(faDataType pFaDataType);
-	void replaceFA(faDataType pFaDataType, const IBString& cxml);
+	void replaceFA(faDataType pFaDataType, const std::string& cxml);
 	void reqHistoricalData( TickerId id, const Contract &contract,
-		const IBString &endDateTime, const IBString &durationStr,
-		const IBString & barSizeSetting, const IBString &whatToShow,
+		const std::string &endDateTime, const std::string &durationStr,
+		const std::string & barSizeSetting, const std::string &whatToShow,
 		int useRTH, int formatDate);
 	void exerciseOptions(TickerId tickerId, const Contract &contract,
 		int exerciseAction, int exerciseQuantity,
-		const IBString &account, int override);
+		const std::string &account, int override);
 	void cancelHistoricalData(TickerId tickerId );
 	void reqRealTimeBars(TickerId id, const Contract &contract, int barSize,
-		const IBString &whatToShow, bool useRTH);
+		const std::string &whatToShow, bool useRTH);
 	void cancelRealTimeBars(TickerId tickerId );
 	void cancelScannerSubscription(int tickerId);
 	void reqScannerParameters();
 	void reqScannerSubscription(int tickerId, const ScannerSubscription &subscription);
 	void reqCurrentTime();
-	void reqFundamentalData(TickerId reqId, const Contract&, const IBString& reportType);
+	void reqFundamentalData(TickerId reqId, const Contract&, const std::string& reportType);
 	void cancelFundamentalData(TickerId reqId);
 	void calculateImpliedVolatility(TickerId reqId, const Contract &contract, double optionPrice, double underPrice);
 	void calculateOptionPrice(TickerId reqId, const Contract &contract, double volatility, double underPrice);
@@ -118,7 +118,7 @@ private:
 	static bool DecodeField(int&, const char*& ptr, const char* endPtr);
 	static bool DecodeField(long&, const char*& ptr, const char* endPtr);
 	static bool DecodeField(double&, const char*& ptr, const char* endPtr);
-	static bool DecodeField(IBString&, const char*& ptr, const char* endPtr);
+	static bool DecodeField(std::string&, const char*& ptr, const char* endPtr);
 
 	static bool DecodeFieldMax(int&, const char*& ptr, const char* endPtr);
 	static bool DecodeFieldMax(long&, const char*& ptr, const char* endPtr);
@@ -157,7 +157,7 @@ private:
 
 	bool m_connected;
 	int m_serverVersion;
-	IBString m_TwsTime;
+	std::string m_TwsTime;
 
 };
 

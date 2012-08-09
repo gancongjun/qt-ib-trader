@@ -136,13 +136,13 @@ public:
 	virtual void tickGeneric           ( TickerId tickerId, TickType tickType, double value )
 	{EW_TRYCATCH(tickGeneric           , tickerId, tickGeneric( tickerId, tickType, value ); ) }
 
-	virtual void tickString            ( TickerId tickerId, TickType tickType, const IBString& value )
+	virtual void tickString            ( TickerId tickerId, TickType tickType, const std::string& value )
 	{EW_TRYCATCH(tickString            , tickerId, tickString( tickerId, tickType, value ); ) }
 
-	virtual void tickEFP               ( TickerId tickerId, TickType tickType, double basisPoints, const IBString& formattedBasisPoints, double totalDividends, int holdDays, const IBString& futureExpiry, double dividendImpact, double dividendsToExpiry)
+	virtual void tickEFP               ( TickerId tickerId, TickType tickType, double basisPoints, const std::string& formattedBasisPoints, double totalDividends, int holdDays, const std::string& futureExpiry, double dividendImpact, double dividendsToExpiry)
 	{EW_TRYCATCH(tickEFP               , tickerId, tickEFP( tickerId, tickType, basisPoints, formattedBasisPoints, totalDividends, holdDays, futureExpiry, dividendImpact, dividendsToExpiry); ) }
 
-	virtual void orderStatus           ( OrderId orderId, const IBString& status, int filled, int remaining, double avgFillPrice, int permId, int parentId, double lastFillPrice, int clientId, const IBString& whyHeld )
+	virtual void orderStatus           ( OrderId orderId, const std::string& status, int filled, int remaining, double avgFillPrice, int permId, int parentId, double lastFillPrice, int clientId, const std::string& whyHeld )
 	{EW_TRYCATCH(orderStatus           , orderId, orderStatus( orderId, status, filled, remaining, avgFillPrice, permId, parentId, lastFillPrice, clientId, whyHeld ); ) } 
 
 	virtual void openOrder             ( OrderId orderId, const Contract& contract, const Order& order, const OrderState& orderState )
@@ -151,22 +151,22 @@ public:
 	virtual void openOrderEnd          ()
 	{EW_TRYCATCH(openOrderEnd          , NO_VALID_ID, openOrderEnd(); ) } 
 
-	virtual void winError              ( const IBString& str, int lastError )
+	virtual void winError              ( const std::string& str, int lastError )
 	{EW_TRYCATCH(winError              , NO_VALID_ID, winError( str, lastError ); ) }
 
 	virtual void connectionClosed      ()
 	{EW_TRYCATCH(connectionClosed      , NO_VALID_ID, connectionClosed(); ) }
 
-	virtual void updateAccountValue    ( const IBString& key, const IBString& val, const IBString& currency, const IBString& accountName )
+	virtual void updateAccountValue    ( const std::string& key, const std::string& val, const std::string& currency, const std::string& accountName )
 	{EW_TRYCATCH(updateAccountValue    , NO_VALID_ID, updateAccountValue( key, val, currency, accountName ); ) }
 
-	virtual void updatePortfolio       ( const Contract& contract, int position, double marketPrice, double marketValue, double averageCost, double unrealizedPNL, double realizedPNL, const IBString& accountName )
+	virtual void updatePortfolio       ( const Contract& contract, int position, double marketPrice, double marketValue, double averageCost, double unrealizedPNL, double realizedPNL, const std::string& accountName )
 	{EW_TRYCATCH(updatePortfolio       , NO_VALID_ID, updatePortfolio( contract, position, marketPrice, marketValue, averageCost, unrealizedPNL, realizedPNL, accountName ); ) }
 
-	virtual void updateAccountTime     ( const IBString& timeStamp )
+	virtual void updateAccountTime     ( const std::string& timeStamp )
 	{EW_TRYCATCH(updateAccountTime     , NO_VALID_ID, updateAccountTime( timeStamp ); ) }
 
-	virtual void accountDownloadEnd    ( const IBString& accountName )
+	virtual void accountDownloadEnd    ( const std::string& accountName )
 	{EW_TRYCATCH(accountDownloadEnd    , NO_VALID_ID, accountDownloadEnd( accountName ); ) }
 
 	virtual void nextValidId           ( OrderId orderId )
@@ -187,31 +187,31 @@ public:
 	virtual void execDetailsEnd        ( int reqId )
 	{EW_TRYCATCH(execDetailsEnd        , reqId, execDetailsEnd( reqId ); ) }
 
-	virtual void error                 ( const int id, const int errorCode, const IBString errorString )
+	virtual void error                 ( const int id, const int errorCode, const std::string errorString )
 	{EW_TRYCATCH(error                 , id, error( id, errorCode, errorString ); ) }
 
 	virtual void updateMktDepth        ( TickerId id, int position, int operation, int side, double price, int size )
 	{EW_TRYCATCH(updateMktDepth        , id, updateMktDepth( id, position, operation, side, price, size ); ) }
 
-	virtual void updateMktDepthL2      ( TickerId id, int position, IBString marketMaker, int operation, int side, double price, int size )
+	virtual void updateMktDepthL2      ( TickerId id, int position, std::string marketMaker, int operation, int side, double price, int size )
 	{EW_TRYCATCH(updateMktDepthL2      , id, updateMktDepthL2( id, position, marketMaker, operation, side, price, size ); ) }
 
-	virtual void updateNewsBulletin    ( int msgId, int msgType, const IBString& newsMessage, const IBString& originExch )
+	virtual void updateNewsBulletin    ( int msgId, int msgType, const std::string& newsMessage, const std::string& originExch )
 	{EW_TRYCATCH(updateNewsBulletin    , msgId, updateNewsBulletin( msgId, msgType, newsMessage, originExch ); ) }
 
-	virtual void managedAccounts       ( const IBString& accountsList )
+	virtual void managedAccounts       ( const std::string& accountsList )
 	{EW_TRYCATCH(managedAccounts       , NO_VALID_ID, managedAccounts( accountsList ); ) }
 
-	virtual void receiveFA             ( faDataType pFaDataType, const IBString& cxml )
+	virtual void receiveFA             ( faDataType pFaDataType, const std::string& cxml )
 	{EW_TRYCATCH(receiveFA             , NO_VALID_ID, receiveFA( pFaDataType, cxml ); ) }
 
-	virtual void historicalData        ( TickerId reqId, const IBString& date, double open, double high, double low, double close, int volume, int barCount, double WAP, int hasGaps )
+	virtual void historicalData        ( TickerId reqId, const std::string& date, double open, double high, double low, double close, int volume, int barCount, double WAP, int hasGaps )
 	{EW_TRYCATCH(historicalData        , reqId, historicalData( reqId, date, open, high, low, close, volume, barCount, WAP, hasGaps ); ) }
 
-	virtual void scannerParameters     ( const IBString& xml )
+	virtual void scannerParameters     ( const std::string& xml )
 	{EW_TRYCATCH(scannerParameters     , NO_VALID_ID, scannerParameters( xml ); ) }
 
-	virtual void scannerData           ( int reqId, int rank, const ContractDetails &contractDetails, const IBString &distance, const IBString &benchmark, const IBString &projection, const IBString &legsStr)
+	virtual void scannerData           ( int reqId, int rank, const ContractDetails &contractDetails, const std::string &distance, const std::string &benchmark, const std::string &projection, const std::string &legsStr)
 	{EW_TRYCATCH(scannerData           , reqId, scannerData( reqId, rank, contractDetails, distance, benchmark, projection, legsStr); ) }
 
 	virtual void scannerDataEnd        ( int reqId)
@@ -223,7 +223,7 @@ public:
 	virtual void currentTime           ( long time )
 	{EW_TRYCATCH(currentTime           , NO_VALID_ID, currentTime( time ); ) }
 
-	virtual void fundamentalData       ( TickerId reqId, const IBString& data )
+	virtual void fundamentalData       ( TickerId reqId, const std::string& data )
 	{EW_TRYCATCH(fundamentalData       , reqId, fundamentalData( reqId, data ); ) }
 
 	virtual void deltaNeutralValidation( int reqId, const UnderComp& underComp )
@@ -508,14 +508,14 @@ struct EClientL0Interface: public EClientL0, CriticalSection
       LEAVE_CLIENT( serverVersion               )
       return r;                                 }
 
-    IBString TwsConnectionTime                  ()
-    { IBString s;
+    std::string TwsConnectionTime                  ()
+    { std::string s;
 	  ENTER_CLIENT( TwsConnectionTime           , NO_VALID_ID )
       s =        EC.TwsConnectionTime           ();
       LEAVE_CLIENT( TwsConnectionTime           )
       return s;                                 }
 
-    void reqMktData                             ( TickerId id, const Contract &contract, const IBString& genericTicks, bool snapshot)
+    void reqMktData                             ( TickerId id, const Contract &contract, const std::string& genericTicks, bool snapshot)
     { ENTER_CLIENT( reqMktData                  , id )
                  EC.reqMktData                  ( id, contract, genericTicks, snapshot);
       LEAVE_CLIENT( reqMktData                  ) }
@@ -540,7 +540,7 @@ struct EClientL0Interface: public EClientL0, CriticalSection
                  EC.reqOpenOrders               ();
       LEAVE_CLIENT( reqOpenOrders               ) }
 
-    void reqAccountUpdates                      (bool subscribe, const IBString& acctCode)
+    void reqAccountUpdates                      (bool subscribe, const std::string& acctCode)
     { ENTER_CLIENT( reqAccountUpdates           , NO_VALID_ID )
                  EC.reqAccountUpdates           (subscribe, acctCode);
       LEAVE_CLIENT( reqAccountUpdates           ) }
@@ -612,17 +612,17 @@ struct EClientL0Interface: public EClientL0, CriticalSection
                  EC.requestFA                   (pFaDataType);
       LEAVE_CLIENT( requestFA                   ) }
 
-    void replaceFA                              (faDataType pFaDataType, const IBString& cxml)
+    void replaceFA                              (faDataType pFaDataType, const std::string& cxml)
     { ENTER_CLIENT( replaceFA                   , NO_VALID_ID )
                  EC.replaceFA                   (pFaDataType, cxml);
       LEAVE_CLIENT( replaceFA                   ) }
 
-    void reqHistoricalData                      ( TickerId id, const Contract &contract, const IBString &endDateTime, const IBString &durationStr, const IBString &barSizeSetting, const IBString &whatToShow, int useRTH, int formatDate)
+    void reqHistoricalData                      ( TickerId id, const Contract &contract, const std::string &endDateTime, const std::string &durationStr, const std::string &barSizeSetting, const std::string &whatToShow, int useRTH, int formatDate)
     { ENTER_CLIENT( reqHistoricalData           , id )
                  EC.reqHistoricalData           ( id, contract, endDateTime, durationStr, barSizeSetting, whatToShow, useRTH, formatDate);
       LEAVE_CLIENT( reqHistoricalData           ) }
 
-    void exerciseOptions                        ( TickerId id, const Contract &contract, int exerciseAction, int exerciseQuantity, const IBString &account, int override)
+    void exerciseOptions                        ( TickerId id, const Contract &contract, int exerciseAction, int exerciseQuantity, const std::string &account, int override)
     { ENTER_CLIENT( exerciseOptions             , id )
                  EC.exerciseOptions             ( id, contract, exerciseAction, exerciseQuantity, account, override);
       LEAVE_CLIENT( exerciseOptions             ) }
@@ -632,7 +632,7 @@ struct EClientL0Interface: public EClientL0, CriticalSection
                  EC.cancelHistoricalData        ( tickerId );
       LEAVE_CLIENT( cancelHistoricalData        ) }
 
-    void reqRealTimeBars                        ( TickerId id, const Contract &contract, int barSize, const IBString &whatToShow, bool useRTH)
+    void reqRealTimeBars                        ( TickerId id, const Contract &contract, int barSize, const std::string &whatToShow, bool useRTH)
     { ENTER_CLIENT( reqRealTimeBars             , id )
                  EC.reqRealTimeBars             ( id, contract, barSize, whatToShow, useRTH);
       LEAVE_CLIENT( reqRealTimeBars             ) }
@@ -662,7 +662,7 @@ struct EClientL0Interface: public EClientL0, CriticalSection
                  EC.reqCurrentTime              ();
       LEAVE_CLIENT( reqCurrentTime              ) }
 
-    void reqFundamentalData                     ( TickerId reqId, const Contract& contract, const IBString& reportType)
+    void reqFundamentalData                     ( TickerId reqId, const Contract& contract, const std::string& reportType)
     { ENTER_CLIENT( reqFundamentalData          , reqId )
                  EC.reqFundamentalData          ( reqId, contract, reportType);
       LEAVE_CLIENT( reqFundamentalData          ) }

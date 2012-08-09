@@ -59,7 +59,7 @@ class MyEWrapper: public EWrapperL0
 			);
 	}
 
-	virtual void winError( const IBString& str, int lastError )
+	virtual void winError( const std::string& str, int lastError )
 	{
 		PrintProcessId,printf( "WinError: %d = %s\n", lastError, (const char*)str );
 	}
@@ -69,7 +69,7 @@ class MyEWrapper: public EWrapperL0
 		PrintProcessId,printf( "Connection Closed\n");
 	}
 
-	virtual void updateAccountValue( const IBString& key, const IBString& val, const IBString& currency, const IBString& accountName )
+	virtual void updateAccountValue( const std::string& key, const std::string& val, const std::string& currency, const std::string& accountName )
 	{
 		UpdateAccountValueKey::ENUMS UAVK;
 		if( UAVK *= key )
@@ -78,7 +78,7 @@ class MyEWrapper: public EWrapperL0
 			PrintProcessId,printf( "AC: %s %5s ? %-30s %s\n", (const char*)accountName, (const char*)currency, (const char*)key, (const char*)val );
 	}
 
-	virtual void accountDownloadEnd( const IBString& accountName )
+	virtual void accountDownloadEnd( const std::string& accountName )
 	{
 		PrintProcessId,printf( "AC: %s end\n", (const char*)accountName );
 	}
@@ -92,15 +92,15 @@ class MyEWrapper: public EWrapperL0
 	{
 		const Contract& C = contractDetails.summary;
 
-		PrintProcessId,printf	( "CD: %10s %5s %8s, %5.2f\n", (const char*)C.localSymbol, (const char*)C.secType, (const char*)C.expiry, C.strike );
+		PrintProcessId,printf	( "CD: %10s %5s %8s, %5.2f\n", C.localSymbol, (const char*)C.secType, (const char*)C.expiry, C.strike );
 	}
 
-	virtual void error( const int id, const int errorCode, const IBString errorString )
+	virtual void error( const int id, const int errorCode, const std::string errorString )
 	{
 		PrintProcessId,printf( "Error for id=%d: %d = %s\n", id, errorCode, (const char*)errorString );
 	}
 
-	virtual void historicalData( TickerId reqId, const IBString& date, double open, double high, double low, double close, int volume, int barCount, double WAP, int hasGaps )
+	virtual void historicalData( TickerId reqId, const std::string& date, double open, double high, double low, double close, int volume, int barCount, double WAP, int hasGaps )
 	{
 		if( IsEndOfHistoricalData(date) )
 		{
@@ -124,7 +124,7 @@ class MyEWrapper: public EWrapperL0
 			);
    }
 
-   virtual void updateMktDepthL2(TickerId id, int position, IBString marketMaker, int operation, int side, double price, int size )
+   virtual void updateMktDepthL2(TickerId id, int position, std::string marketMaker, int operation, int side, double price, int size )
    {
    }
 
@@ -150,10 +150,10 @@ class MyEWrapper: public EWrapperL0
 //----------------------------------------------------------------------------
 void TestEnums( void )
 {
-	IBString			x = *TickTypes::Bid;
+	std::string			x = *TickTypes::Bid;
 	x = *OrderStatus::PendingCancel;
 
-	IBString			y;
+	std::string			y;
 	y = *TriggerMethod::LastPrice;
 
 	OrderStatus::ENUMS	e;
